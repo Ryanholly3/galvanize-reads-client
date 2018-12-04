@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import Home from './home/Home';
+import Books from './books/Books';
+import Authors from './authors/Authors';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
 import './App.css';
 
 class App extends Component {
@@ -14,20 +18,37 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router>
+          <header className="App-header">
+            <Menu color="blue" inverted>
+                <Menu.Item as={ Link } name='Home' to='/'>
+                  Galvanize Reads
+                </Menu.Item>
+              <Menu.Menu position="right">
+                <Menu.Item as={ Link } name='Authors' to='/authors'>
+                  Authors
+                </Menu.Item>
+                <Menu.Item as={ Link } name='Books' to='/books'>
+                  Books
+                </Menu.Item>
+              </Menu.Menu>
+            </Menu>
+          </header>
+          <body>
+            <Route exact
+                path="/"
+                render={(props)=> <Home/> }
+              />
+              <Route
+                path="/books"
+                render={(props)=> <Books /> }
+              />
+              <Route
+                path="/authors"
+                render={(props)=> <Authors /> }
+              />
+          </body>
+        </Router>
       </div>
     );
   }
