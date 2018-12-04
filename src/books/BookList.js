@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Book from './Book'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import '../App.css';
 
 class BookList extends Component {
@@ -13,7 +13,18 @@ class BookList extends Component {
   render(){
     return (
       <div className="bookList">
-        { this.bookItem() }
+        <Table color='purple' key='purple' striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell width='one' >Title</Table.HeaderCell>
+              <Table.HeaderCell width='two' >genre</Table.HeaderCell>
+              <Table.HeaderCell width='three' >Description</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            { this.bookItem() }
+          </Table.Body>
+        </Table>
       </div>
     )
   }
