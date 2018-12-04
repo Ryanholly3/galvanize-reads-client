@@ -16,9 +16,9 @@ class BookList extends Component {
         <Table color='purple' key='purple' striped>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell width='one' >Title</Table.HeaderCell>
-              <Table.HeaderCell width='two' >genre</Table.HeaderCell>
-              <Table.HeaderCell width='three' >Description</Table.HeaderCell>
+              <Table.HeaderCell width='one' >Book List</Table.HeaderCell>
+              <Table.HeaderCell width='three' ></Table.HeaderCell>
+              <Table.HeaderCell width='four' >Description</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>

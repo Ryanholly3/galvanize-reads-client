@@ -8,8 +8,12 @@ class Book extends Component {
   render(){
     return (
       <Table.Row>
-        <Table.Cell>{ this.props.title }</Table.Cell>
-        <Table.Cell>{ this.props.genre }</Table.Cell>
+        <Table.Cell><img src={this.props.coverUrl} alt="book cover" className="book-cover" /></Table.Cell>
+        <Table.Cell>
+          <p><b>Title:</b> { this.props.title }</p>
+          <p><b>Genre:</b> { this.props.genre}</p>
+          <p><b>Authors:</b></p>
+        </Table.Cell>
         <Table.Cell>{ this.props.description }</Table.Cell>
       </Table.Row>
     )
