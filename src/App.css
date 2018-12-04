@@ -5,3 +5,8 @@
 .book-cover {
   height: 30%;
 }
+
+.books-header{
+  display: flex;
+  justify-content: space-between;
+}

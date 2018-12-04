@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Table } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 import '../App.css';
 
 class Book extends Component {
@@ -13,6 +13,9 @@ class Book extends Component {
           <p><b>Title:</b> { this.props.title }</p>
           <p><b>Genre:</b> { this.props.genre}</p>
           <p><b>Authors:</b></p>
+          <br/>
+          <Button size="small" color="pink">Edit Book</Button>
+          <Button size="small" color="pink">Delete Book</Button>
         </Table.Cell>
         <Table.Cell>{ this.props.description }</Table.Cell>
       </Table.Row>
