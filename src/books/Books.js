@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import BookList from './BookList';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import '../App.css';
 
 class Books extends Component {
 
   render(){
     return (
-      <div className="books">
-        <h1>BOOKS PAGE</h1>
-      </div>
+      <Container>
+        <div className="books">
+          <h1>Books</h1>
+          <BookList books={this.props.books }/>
+        </div>
+      </Container>
     )
   }
 }

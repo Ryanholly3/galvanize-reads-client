@@ -15,6 +15,17 @@ class App extends Component {
     }
   }
 
+  async componentDidMount() {
+    const bookResponse = await fetch('http://localhost:3001/books');
+    const authorResponse = await fetch('http://localhost:3001/authors');
+    const bookjson = await bookResponse.json();
+    const authorjson = await authorResponse.json();
+    this.setState({
+      books: bookjson.books,
+      authors: authorjson.authors
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -42,7 +53,7 @@ class App extends Component {
               />
               <Route
                 path="/books"
-                render={(props)=> <Books /> }
+                render={(props)=> <Books books={ this.state.books } /> }
               />
               <Route
                 path="/authors"
