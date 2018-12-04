@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
-import './App.css';
+import '../App.css';
 
 class Authors extends Component {
 

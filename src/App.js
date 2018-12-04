@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <header className="App-header">
+          <div>
             <Menu color="blue" inverted>
                 <Menu.Item as={ Link } name='Home' to='/'>
                   Galvanize Reads
@@ -33,8 +33,6 @@ class App extends Component {
                 </Menu.Item>
               </Menu.Menu>
             </Menu>
-          </header>
-          <body>
             <Route exact
                 path="/"
                 render={(props)=> <Home/> }
@@ -47,7 +45,7 @@ class App extends Component {
                 path="/authors"
                 render={(props)=> <Authors /> }
               />
-          </body>
+          </div>
         </Router>
       </div>
     );
