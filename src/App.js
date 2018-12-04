@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state= {
+      authors: [],
+      books: [],
+    }
+  }
+
   render() {
     return (
       <div className="App">
