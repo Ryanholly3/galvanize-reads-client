@@ -11,13 +11,20 @@ class Book extends Component {
   }
 
   render(){
+
+    var authorsList = '';
+    for(let i = 0; i < this.props.authors.length; i++){
+      authorsList += this.props.authors[i].first_name + ' ';
+      authorsList += this.props.authors[i].last_name + ', ';
+    }
+
     return (
       <Table.Row>
         <Table.Cell><img src={this.props.coverUrl} alt="book cover" className="book-cover" /></Table.Cell>
         <Table.Cell>
           <p><b>Title:</b> { this.props.title }</p>
-          <p><b>Genre:</b> { this.props.genre}</p>
-          <p><b>Authors:</b></p>
+          <p><b>Genre:</b> { this.props.genre }</p>
+          <p><b>Authors:</b>{ ` ${authorsList}` }</p>
           <br/>
           <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Book</Button>}>
             <Modal.Header>Edit Book Form</Modal.Header>
@@ -34,7 +41,7 @@ class Book extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Author:</label>
-                    <Input/>
+                    <Input value={ authorsList }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Cover Url:</label>

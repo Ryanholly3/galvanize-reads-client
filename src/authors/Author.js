@@ -12,12 +12,18 @@ class Author extends Component {
   }
 
   render(){
+
+    var booksList = '';
+    for(let i = 0; i < this.props.books.length; i++){
+      booksList += this.props.books[i].title + ' ';
+    }
+
     return (
       <Table.Row>
         <Table.Cell><img src={this.props.portraitUrl} alt="Author portrait" className="author-portrait" /></Table.Cell>
         <Table.Cell>
           <p><b>Name</b> { `${this.props.firstName} ${this.props.lastName}` } </p>
-          <p><b>Books:</b></p>
+          <p><b>Books:</b> { ` ${booksList}` }</p>
           <br/>
           <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Author</Button>}>
             <Modal.Header>Edit Author Form</Modal.Header>
@@ -34,7 +40,7 @@ class Author extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Books:</label>
-                    <Input/>
+                    <Input value={ booksList }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Portrait Url:</label>

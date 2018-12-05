@@ -7,7 +7,7 @@ import '../App.css';
 class AuthorList extends Component {
 
   authorItem(){
-    return this.props.authors.map((author, i) => <Author key={i} authorId={author.id} firstName={author.first_name} lastName={author.last_name} biography={author.biography} portraitUrl={author.portrait_url} deleteAuthor={this.props.deleteAuthor}/>)
+    return this.props.authors.map((author, i) => <Author key={i} authorId={author.author_id} firstName={author.first_name} lastName={author.last_name} biography={author.biography} portraitUrl={author.portrait_url} books={author.books} deleteAuthor={this.props.deleteAuthor}/>)
   }
 
   render(){
