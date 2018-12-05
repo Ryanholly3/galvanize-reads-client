@@ -1,13 +1,40 @@
 import React, { Component } from 'react';
 import Book from './Book'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Table } from 'semantic-ui-react';
+import { Table, Input } from 'semantic-ui-react';
 import '../App.css';
 
 class BookList extends Component {
+  constructor(props){
+    super(props);
+    this.state= {
+      search: '',
+    }
+  }
+
+  changeSearch = (e) => {
+    e.preventDefault();
+    this.setState({ search: e.target.value })
+  }
+
+  titleSearch = (e) => {
+    e.preventDefault();
+    var listConstruct = [];
+    for(let i = 0; i < this.props.bookSearch.length; i++){
+      if(this.props.bookSearch[i].title.indexOf(this.state.search) !== -1){
+        listConstruct.push(this.props.bookSearch[i]);
+      }
+    }
+    this.props.titleFilter(listConstruct)
+  }
+
+  bookReset = () =>{
+    this.props.bookReset();
+  }
+
 
   bookItem(){
-    return this.props.books.map((book, i) => <Book key={i} bookId={book.book_id} title={book.title} genre={book.genre} description={book.description} coverUrl={book.cover_url} authors={book.authors} deleteBook={this.props.deleteBook}/>)
+    return this.props.bookSearch.map((book, i) => <Book key={i} bookId={book.book_id} title={book.title} genre={book.genre} description={book.description} coverUrl={book.cover_url} authors={book.authors} deleteBook={this.props.deleteBook}/>)
   }
 
   render(){
@@ -15,6 +42,11 @@ class BookList extends Component {
       <div className="bookList">
         <Table color='purple' key='purple' striped>
           <Table.Header>
+            <Table.Row>
+              <Input type="text" placeholder="search for a book..." onChange={ this.changeSearch }/>
+              <Input type="submit" value="Search" onClick={ this.titleSearch }/>
+              <Input type="submit" value="Reset Search" onClick={ this.bookReset }/>
+            </Table.Row>
             <Table.Row>
               <Table.HeaderCell width='one' >Book List</Table.HeaderCell>
               <Table.HeaderCell width='three' ></Table.HeaderCell>

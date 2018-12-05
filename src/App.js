@@ -12,6 +12,8 @@ class App extends Component {
     this.state= {
       authors: [],
       books: [],
+      bookSearch: [],
+      authorSearch: [],
     }
   }
 
@@ -22,7 +24,9 @@ class App extends Component {
     const authorjson = await authorResponse.json();
     this.setState({
       books: bookjson.books,
-      authors: authorjson.authors
+      bookSearch: bookjson.books,
+      authors: authorjson.authors,
+      authorSearch: authorjson.authors,
     });
   }
 
@@ -39,7 +43,8 @@ class App extends Component {
     const posted = await response.json()
     console.log(posted)
     this.setState({
-      books: this.state.books.concat(posted)
+      books: this.state.books.concat(posted),
+      bookSearch: this.state.books.concat(posted)
     })
   }
 
@@ -52,7 +57,8 @@ class App extends Component {
     var newBook = this.state.books
     newBook.splice(bookId, 1)
     this.setState({
-      books: newBook
+      books: newBook,
+      bookSearch: newBook,
     })
   }
 
@@ -69,7 +75,8 @@ class App extends Component {
     const posted = await response.json()
     console.log(posted)
     this.setState({
-      authors: this.state.authors.concat(posted)
+      authors: this.state.authors.concat(posted),
+      authorSearch: this.state.authors.concat(posted),
     })
   }
 
@@ -82,7 +89,33 @@ class App extends Component {
     var newAuthor = this.state.authors
     newAuthor.splice(authorId, 1)
     this.setState({
-      authors: newAuthor
+      authors: newAuthor,
+      authorSearch: newAuthor,
+    })
+  }
+
+  titleFilter = (item) => {
+    this.setState({
+      bookSearch: item
+    })
+  }
+
+  authorFilter = (item) => {
+    console.log(item)
+    this.setState({
+      authorSearch: item
+    })
+  }
+
+  bookReset = () =>{
+    this.setState({
+      bookSearch: this.state.books,
+    })
+  }
+
+  authorReset = () =>{
+    this.setState({
+      authorSearch: this.state.authors,
     })
   }
 
@@ -113,11 +146,11 @@ class App extends Component {
               />
               <Route
                 path="/books"
-                render={(props)=> <Books books={ this.state.books } addBook={this.addBook} deleteBook={this.deleteBook}/> }
+                render={(props)=> <Books books={ this.state.books } addBook={this.addBook} deleteBook={this.deleteBook} bookSearch={this.state.bookSearch} titleFilter={this.titleFilter} bookReset={this.bookReset} /> }
               />
               <Route
                 path="/authors"
-                render={(props)=> <Authors authors={ this.state.authors } addAuthor={this.addAuthor} deleteAuthor={this.deleteAuthor}/> }
+                render={(props)=> <Authors authors={ this.state.authors } addAuthor={this.addAuthor} deleteAuthor={this.deleteAuthor} authorSearch={this.state.authorSearch} authorFilter={this.authorFilter} authorReset={this.authorReset}/> }
               />
           </div>
         </Router>
