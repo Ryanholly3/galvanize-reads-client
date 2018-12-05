@@ -50,6 +50,24 @@ class Books extends Component {
     })
   }
 
+  handleOpen = () =>{
+    this.setState({
+      title:'',
+      genre:'',
+      cover_url:'',
+      description:'',
+      failedSubmit: false,
+      modalOpen: true,
+    })
+  }
+
+  handleClose = () =>{
+    this.forceUpdate()
+    this.setState({
+      modalOpen: false,
+    })
+  }
+
   submitForm = () => {
     if(this.state.title !== '' && this.state.genre !== '' && this.state.cover_url !== '' && this.state.description !== ''){
       //SEND DATA TO APP
@@ -61,14 +79,7 @@ class Books extends Component {
       }
 
       this.props.addBook(newBook)
-
-      this.setState({
-        title:'',
-        genre:'',
-        cover_url:'',
-        description:'',
-        failedSubmit: false,
-      })
+      this.forceUpdate()
 
     } else {
       this.setState({
@@ -99,7 +110,7 @@ class Books extends Component {
           <div className="books-header">
             <h1>Books</h1>
             <div>
-              <Modal size="tiny" closeIcon trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
+              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
                 <Modal.Header>Add Book Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>
@@ -121,6 +132,7 @@ class Books extends Component {
                         <TextArea autoHeight onChange={ this.captureDescription } />
                       </Form.Field>
                       { this.formStatusMessage() }
+                      <Button color="red" type="button" onClick={ this.handleClose } >EXIT</Button>
                       <Button color="green" type="button" onClick={ this.submitForm } >Submit New Book</Button>
                     </Form>
                   </Modal.Description>
