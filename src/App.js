@@ -26,6 +26,23 @@ class App extends Component {
     });
   }
 
+  addBook = async (book) =>{
+    console.log('post triggered')
+    const response = await fetch('http://localhost:3001/books', {
+      method: 'POST',
+      body: JSON.stringify(book),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const posted = await response.json()
+    console.log(posted)
+    this.setState({
+      books: this.state.books.concat(posted)
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -53,7 +70,7 @@ class App extends Component {
               />
               <Route
                 path="/books"
-                render={(props)=> <Books books={ this.state.books } /> }
+                render={(props)=> <Books books={ this.state.books } addBook={this.addBook}/> }
               />
               <Route
                 path="/authors"

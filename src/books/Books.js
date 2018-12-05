@@ -8,48 +8,51 @@ class Books extends Component {
   constructor(props){
     super(props);
     this.state= {
-      title:'',
-      genre:'',
-      author:'',
-      url:'',
-      description:'',
-      failedSubmit: false,
-      addedBook: {},
-      modalOpen: false
+      book: {
+        title:'',
+        genre:'',
+        cover_url:'',
+        description:'',
+      },
+      modalOpen: false,
+      failedSubmit: false
     }
   }
 
+
+
   captureTitle = (e) => {
     this.setState({
-      title: e.target.value,
+      book: {
+        title: e.target.value
+      },
       failedSubmit: false
     })
   }
 
   captureGenre = (e) =>{
     this.setState({
-      genre: e.target.value,
-      failedSubmit: false
-    })
-  }
-
-  captureAuthor = (e) =>{
-    this.setState({
-      author: e.target.value,
+      book:{
+        genre: e.target.value
+      },
       failedSubmit: false
     })
   }
 
   captureUrl = (e) =>{
     this.setState({
-      url: e.target.value,
+      book: {
+        cover_url: e.target.value
+      },
       failedSubmit: false
     })
   }
 
   captureDescription = (e) =>{
     this.setState({
-      description: e.target.value,
+      book: {
+        description: e.target.value
+      },
       failedSubmit: false
     })
   }
@@ -62,13 +65,13 @@ class Books extends Component {
 
   handleClose = ()=>{
     this.setState({
-      title:'',
-      genre:'',
-      author:'',
-      url:'',
-      description:'',
+      book: {
+        title:'',
+        genre:'',
+        cover_url:'',
+        description:'',
+      },
       failedSubmit: false,
-      addedBook: {},
       modalOpen: false
     })
   }
@@ -76,15 +79,16 @@ class Books extends Component {
   submitForm = () =>{
     if(this.state.title !== '' && this.state.genre !== '' && this.state.author !== '' && this.state.url !== '' && this.state.description !== ''){
       //SEND DATA TO APP
-      console.log('TRIGGERED')
+      console.log(this.state.book)
+      this.props.addBook(this.state.book)
       this.setState({
-        title:'',
-        genre:'',
-        author:'',
-        url:'',
-        description:'',
+        book: {
+          title:'',
+          genre:'',
+          cover_url:'',
+          description:'',
+        },
         failedSubmit: false,
-        addedBook: {},
         modalOpen: false
       })
 
@@ -129,10 +133,6 @@ class Books extends Component {
                       <Form.Field>
                         <label>Genre:</label>
                         <Input onChange={ this.captureGenre } />
-                      </Form.Field>
-                      <Form.Field>
-                        <label>Author:</label>
-                        <Input onChange={ this.captureAuthor } />
                       </Form.Field>
                       <Form.Field>
                         <label>Cover Url:</label>
