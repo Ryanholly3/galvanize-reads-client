@@ -140,7 +140,7 @@ class Books extends Component {
               </Modal>
             </div>
           </div>
-          <BookList books={this.props.books }/>
+          <BookList books={this.props.books } deleteBook={this.props.deleteBook}/>
         </div>
       </Container>
     )

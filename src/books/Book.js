@@ -4,7 +4,12 @@ import { Table, Button, Input, Form, Modal, TextArea, Icon } from 'semantic-ui-r
 import '../App.css';
 
 class Book extends Component {
-  
+
+  deleteBook = () =>{
+    var stringId = this.props.bookId.toString()
+    this.props.deleteBook(stringId)
+  }
+
   render(){
     return (
       <Table.Row>
@@ -39,7 +44,7 @@ class Book extends Component {
                     <label>Description:</label>
                     <TextArea autoHeight value={ this.props.description }/>
                   </Form.Field>
-                  <Button color="red">Discard Changes</Button>
+                  <Button color="red" >Discard Changes</Button>
                   <Button color="green" >Save Changes</Button>
                 </Form>
               </Modal.Description>
@@ -55,7 +60,7 @@ class Book extends Component {
                 <Button basic color='red'inverted>
                   <Icon name='remove' /> No, Don't Delete
                 </Button>
-                <Button color='green' inverted>
+                <Button color='green' inverted onClick={ this.deleteBook }>
                   <Icon name='checkmark' /> Yes, Delete
                 </Button>
               </div>

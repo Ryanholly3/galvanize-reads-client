@@ -7,7 +7,7 @@ import '../App.css';
 class BookList extends Component {
 
   bookItem(){
-    return this.props.books.map((book, i) => <Book key={i} title={book.title} genre={book.genre} description={book.description} coverUrl={book.cover_url} />)
+    return this.props.books.map((book, i) => <Book key={i} bookId={book.id} title={book.title} genre={book.genre} description={book.description} coverUrl={book.cover_url} deleteBook={this.props.deleteBook}/>)
   }
 
   render(){

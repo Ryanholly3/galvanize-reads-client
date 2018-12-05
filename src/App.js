@@ -43,6 +43,19 @@ class App extends Component {
     })
   }
 
+  deleteBook = async (bookId) =>{
+    const response = await fetch(`http://localhost:3001/books/${bookId}`, {
+      method: 'DELETE'
+    })
+    const deleted = await response.json()
+
+    var newBook = this.state.books
+    newBook.splice(bookId, 1)
+    this.setState({
+      books: newBook
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -70,7 +83,7 @@ class App extends Component {
               />
               <Route
                 path="/books"
-                render={(props)=> <Books books={ this.state.books } addBook={this.addBook}/> }
+                render={(props)=> <Books books={ this.state.books } addBook={this.addBook} deleteBook={this.deleteBook}/> }
               />
               <Route
                 path="/authors"
