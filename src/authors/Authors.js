@@ -110,14 +110,14 @@ class Authors extends Component {
           <div className="authors-header">
             <h1>Authors</h1>
             <div>
-              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
+              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Author</Button>}>
                 <Modal.Header>Add Author Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>
                     <Form >
                       <Form.Field>
                         <label>First Name:</label>
-                        <Input onChange={ this.capturefirstName } />
+                        <Input onChange={ this.captureFirstName } />
                       </Form.Field>
                       <Form.Field>
                         <label>Last Name:</label>

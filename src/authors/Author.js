@@ -7,6 +7,7 @@ class Author extends Component {
 
   deleteAuthor = () =>{
     var stringId = this.props.authorId.toString()
+    console.log(stringId)
     this.props.deleteAuthor(stringId)
   }
 
