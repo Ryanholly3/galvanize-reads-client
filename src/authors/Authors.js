@@ -140,7 +140,7 @@ class Authors extends Component {
               </Modal>
             </div>
           </div>
-          <AuthorList authors={this.props.authors } authorSearch={this.props.authorSearch} authorFilter={this.props.authorFilter} authorReset={this.props.authorReset} deleteAuthor={this.props.deleteAuthor}/>
+          <AuthorList history={this.props.history} authors={this.props.authors } books={this.props.books} authorSearch={this.props.authorSearch} authorFilter={this.props.authorFilter} authorReset={this.props.authorReset} deleteAuthor={this.props.deleteAuthor} titleFilter={this.props.titleFilter}/>
         </div>
       </Container>
     )

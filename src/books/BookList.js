@@ -9,12 +9,19 @@ class BookList extends Component {
     super(props);
     this.state= {
       search: '',
+      notFound: false,
     }
   }
 
   changeSearch = (e) => {
     e.preventDefault();
-    this.setState({ search: e.target.value })
+    if(this.props.bookSearch.length === 0){
+      this.props.bookReset()
+    }
+    this.setState({
+      search: e.target.value,
+      notFound: false,
+    })
   }
 
   titleSearch = (e) => {
@@ -26,18 +33,43 @@ class BookList extends Component {
       }
     }
     this.props.titleFilter(listConstruct)
+
+    if(listConstruct.length === 0){
+      this.setState({
+        notFound: true,
+      })
+    }
   }
 
   bookReset = () =>{
     this.props.bookReset();
+    this.setState({
+      notFound: false,
+    })
   }
 
+  searchResult = () =>{
+    if(!this.state.notFound){
+      return(
+        <div>
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          No Book Found
+        </div>
+      )
+    }
+  }
 
   bookItem(){
-    return this.props.bookSearch.map((book, i) => <Book key={i} bookId={book.book_id} title={book.title} genre={book.genre} description={book.description} coverUrl={book.cover_url} authors={book.authors} deleteBook={this.props.deleteBook}/>)
+    return this.props.bookSearch.map((book, i) => <Book key={i} bookId={book.book_id} title={book.title} genre={book.genre} description={book.description} coverUrl={book.cover_url} authors={book.authors} deleteBook={this.props.deleteBook} history={this.props.history} authorsList={this.props.authors} authorFilter={this.props.authorFilter}/>)
   }
 
   render(){
+    let search = false;
+
     return (
       <div className="bookList">
         <Table color='purple' key='purple' striped>
@@ -46,6 +78,7 @@ class BookList extends Component {
               <Input type="text" placeholder="search for a book..." onChange={ this.changeSearch }/>
               <Input type="submit" value="Search" onClick={ this.titleSearch }/>
               <Input type="submit" value="Reset Search" onClick={ this.bookReset }/>
+              { this.searchResult() }
             </Table.Row>
             <Table.Row>
               <Table.HeaderCell width='one' >Book List</Table.HeaderCell>

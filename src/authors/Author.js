@@ -5,6 +5,26 @@ import '../App.css';
 
 class Author extends Component {
 
+  history = (e) =>{
+    var listConstruct = [];
+    for(let i = 0; i < this.props.bookList.length; i++){
+      if(this.props.bookList[i].title.indexOf(e.target.innerText) !== -1){
+        listConstruct.push(this.props.bookList[i]);
+      }
+    }
+    this.props.titleFilter(listConstruct)
+    this.props.history.push('/books')
+  }
+
+  renderBooks = () =>{
+    let bookArray =[];
+    for(let i = 0; i < this.props.books.length; i++){
+      bookArray.push(this.props.books[i].title)
+    }
+    return bookArray.map((book, i) => <a key={i} onClick={ this.history }>{`${bookArray[i]}`}</a>)
+  }
+
+
   deleteAuthor = () =>{
     var stringId = this.props.authorId.toString()
     console.log(stringId)
@@ -23,7 +43,7 @@ class Author extends Component {
         <Table.Cell><img src={this.props.portraitUrl} alt="Author portrait" className="author-portrait" /></Table.Cell>
         <Table.Cell>
           <p><b>Name</b> { `${this.props.firstName} ${this.props.lastName}` } </p>
-          <p><b>Books:</b> { ` ${booksList}` }</p>
+          <p><b>Books:</b> { this.renderBooks() }</p>
           <br/>
           <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Author</Button>}>
             <Modal.Header>Edit Author Form</Modal.Header>

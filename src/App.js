@@ -41,7 +41,7 @@ class App extends Component {
       }
     })
     const posted = await response.json()
-    console.log(posted)
+
     this.setState({
       books: this.state.books.concat(posted),
       bookSearch: this.state.books.concat(posted)
@@ -63,7 +63,6 @@ class App extends Component {
   }
 
   addAuthor = async (author) =>{
-    console.log('post author triggered')
     const response = await fetch('http://localhost:3001/authors', {
       method: 'POST',
       body: JSON.stringify(author),
@@ -101,7 +100,7 @@ class App extends Component {
   }
 
   authorFilter = (item) => {
-    console.log(item)
+    console.log('author filter app item:', item)
     this.setState({
       authorSearch: item
     })
@@ -146,11 +145,11 @@ class App extends Component {
               />
               <Route
                 path="/books"
-                render={(props)=> <Books books={ this.state.books } addBook={this.addBook} deleteBook={this.deleteBook} bookSearch={this.state.bookSearch} titleFilter={this.titleFilter} bookReset={this.bookReset} /> }
+                render={(props)=> <Books history={props.history} books={ this.state.books } authors={this.state.authors} addBook={this.addBook} deleteBook={this.deleteBook} bookSearch={this.state.bookSearch} titleFilter={this.titleFilter} bookReset={this.bookReset} authorFilter={this.authorFilter} /> }
               />
               <Route
                 path="/authors"
-                render={(props)=> <Authors authors={ this.state.authors } addAuthor={this.addAuthor} deleteAuthor={this.deleteAuthor} authorSearch={this.state.authorSearch} authorFilter={this.authorFilter} authorReset={this.authorReset}/> }
+                render={(props)=> <Authors history={props.history} authors={ this.state.authors } books={ this.state.books } addAuthor={this.addAuthor} deleteAuthor={this.deleteAuthor} authorSearch={this.state.authorSearch} authorFilter={this.authorFilter} authorReset={this.authorReset} titleFilter={this.titleFilter}/> }
               />
           </div>
         </Router>

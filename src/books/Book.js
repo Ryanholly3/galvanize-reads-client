@@ -5,17 +5,35 @@ import '../App.css';
 
 class Book extends Component {
 
+  history = (e) =>{
+    var listConstruct = [];
+    for(let i = 0; i < this.props.authorsList.length; i++){
+      if(this.props.authorsList[i].last_name.indexOf(e.target.innerText) !== -1){
+        listConstruct.push(this.props.authorsList[i]);
+      }
+    }
+    this.props.authorFilter(listConstruct)
+    this.props.history.push('/authors')
+  }
+
+  renderAuthors = () =>{
+    let authorArray =[];
+    for(let i = 0; i < this.props.authors.length; i++){
+      authorArray.push(this.props.authors[i].last_name)
+    }
+    return authorArray.map((author, i) => <a key={i} onClick={ this.history }>{`${authorArray[i]}`}</a>)
+  }
+
   deleteBook = () =>{
     var stringId = this.props.bookId.toString()
     this.props.deleteBook(stringId)
   }
 
   render(){
-
-    var authorsList = '';
+    var authorList = '';
     for(let i = 0; i < this.props.authors.length; i++){
-      authorsList += this.props.authors[i].first_name + ' ';
-      authorsList += this.props.authors[i].last_name + ', ';
+      authorList += this.props.authors[i].first_name + ' ';
+      authorList += this.props.authors[i].last_name + ', ';
     }
 
     return (
@@ -24,7 +42,7 @@ class Book extends Component {
         <Table.Cell>
           <p><b>Title:</b> { this.props.title }</p>
           <p><b>Genre:</b> { this.props.genre }</p>
-          <p><b>Authors:</b>{ ` ${authorsList}` }</p>
+          <p><b>Authors:</b> { this.renderAuthors() }</p>
           <br/>
           <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Book</Button>}>
             <Modal.Header>Edit Book Form</Modal.Header>
@@ -41,7 +59,7 @@ class Book extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Author:</label>
-                    <Input value={ authorsList }/>
+                    <Input value={ authorList }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Cover Url:</label>
