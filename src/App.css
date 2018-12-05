@@ -11,6 +11,15 @@
   justify-content: space-between;
 }
 
+.author-portrait {
+  /* height: 30%; */
+}
+
+.authors-header{
+  display: flex;
+  justify-content: space-between;
+}
+
 .centered {
   text-align: center;
 }

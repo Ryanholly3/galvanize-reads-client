@@ -56,6 +56,36 @@ class App extends Component {
     })
   }
 
+  addAuthor = async (author) =>{
+    console.log('post author triggered')
+    const response = await fetch('http://localhost:3001/authors', {
+      method: 'POST',
+      body: JSON.stringify(author),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    const posted = await response.json()
+    console.log(posted)
+    this.setState({
+      authors: this.state.authors.concat(posted)
+    })
+  }
+
+  deleteAuthor = async (authorId) =>{
+    const response = await fetch(`http://localhost:3001/authors/${authorId}`, {
+      method: 'DELETE'
+    })
+    const deleted = await response.json()
+
+    var newAuthor = this.state.authors
+    newAuthor.splice(authorId, 1)
+    this.setState({
+      authors: newAuthor
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -87,7 +117,7 @@ class App extends Component {
               />
               <Route
                 path="/authors"
-                render={(props)=> <Authors /> }
+                render={(props)=> <Authors authors={ this.state.authors } addAuthor={this.addAuthor} deleteAuthor={this.deleteAuthor}/> }
               />
           </div>
         </Router>
