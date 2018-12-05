@@ -1,95 +1,73 @@
 import React, { Component } from 'react';
 import BookList from './BookList';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Container, Button, Modal, Input, TextArea, Form } from 'semantic-ui-react';
+import { Container, Button, Modal, Input, TextArea, Form, Icon } from 'semantic-ui-react';
 import '../App.css';
 
 class Books extends Component {
   constructor(props){
     super(props);
     this.state= {
-      book: {
-        title:'',
-        genre:'',
-        cover_url:'',
-        description:'',
-      },
+      title:'',
+      genre:'',
+      cover_url:'',
+      description:'',
+      failedSubmit: false,
       modalOpen: false,
-      failedSubmit: false
     }
   }
 
 
-
   captureTitle = (e) => {
+    e.preventDefault();
     this.setState({
-      book: {
-        title: e.target.value
-      },
+      title: e.target.value,
       failedSubmit: false
     })
   }
 
   captureGenre = (e) =>{
+    e.preventDefault();
     this.setState({
-      book:{
-        genre: e.target.value
-      },
+      genre: e.target.value,
       failedSubmit: false
     })
   }
 
   captureUrl = (e) =>{
+    e.preventDefault();
     this.setState({
-      book: {
-        cover_url: e.target.value
-      },
+      cover_url: e.target.value,
       failedSubmit: false
     })
   }
 
   captureDescription = (e) =>{
+    e.preventDefault();
     this.setState({
-      book: {
-        description: e.target.value
-      },
+      description: e.target.value,
       failedSubmit: false
     })
   }
 
-  handleOpen = () =>{
-    this.setState({
-      modalOpen: true
-    })
-  }
+  submitForm = () => {
+    if(this.state.title !== '' && this.state.genre !== '' && this.state.cover_url !== '' && this.state.description !== ''){
+      //SEND DATA TO APP
+      const newBook = {
+        title: this.state.title,
+        genre: this.state.genre,
+        description: this.state.description,
+        cover_url: this.state.cover_url,
+      }
 
-  handleClose = ()=>{
-    this.setState({
-      book: {
+      this.props.addBook(newBook)
+
+      this.setState({
         title:'',
         genre:'',
         cover_url:'',
         description:'',
-      },
-      failedSubmit: false,
-      modalOpen: false
-    })
-  }
-
-  submitForm = () =>{
-    if(this.state.title !== '' && this.state.genre !== '' && this.state.author !== '' && this.state.url !== '' && this.state.description !== ''){
-      //SEND DATA TO APP
-      console.log(this.state.book)
-      this.props.addBook(this.state.book)
-      this.setState({
-        book: {
-          title:'',
-          genre:'',
-          cover_url:'',
-          description:'',
-        },
         failedSubmit: false,
-        modalOpen: false
       })
 
     } else {
@@ -121,7 +99,7 @@ class Books extends Component {
           <div className="books-header">
             <h1>Books</h1>
             <div>
-              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
+              <Modal size="tiny" closeIcon trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
                 <Modal.Header>Add Book Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>
@@ -143,8 +121,7 @@ class Books extends Component {
                         <TextArea autoHeight onChange={ this.captureDescription } />
                       </Form.Field>
                       { this.formStatusMessage() }
-                      <Button color="red" onClick={ this.handleClose } >Discard New Book</Button>
-                      <Button color="green" onClick={ this.submitForm } >Submit New Book</Button>
+                      <Button color="green" type="button" onClick={ this.submitForm } >Submit New Book</Button>
                     </Form>
                   </Modal.Description>
                 </Modal.Content>
