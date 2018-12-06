@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Book from './Book'
-import { Table, Input } from 'semantic-ui-react';
+import { Table, Input, Segment } from 'semantic-ui-react';
 import '../App.css';
 
 class BookList extends Component {
@@ -68,6 +68,7 @@ class BookList extends Component {
         <Book
           key={i}
           id={i}
+          bookId={book.book_id}
           title={book.title}
           genre={book.genre}
           description={book.description}
@@ -90,14 +91,14 @@ class BookList extends Component {
 
     return (
       <div className="bookList">
-        <Table color='purple' key='purple' striped>
+        <Segment color="red" inverted className="flex">
+          <Input type="text" className="width" placeholder="search for a book..." onChange={ this.changeSearch }/>
+          <Input type="submit" value="Search by Title" onClick={ this.titleSearch }/>
+          <Input type="submit" value="Reset Search" onClick={ this.bookReset }/>
+          { this.searchResult() }
+        </Segment>
+        <Table color='red' key='red' striped>
           <Table.Header>
-            <Table.Row>
-              <Input type="text" placeholder="search for a book..." onChange={ this.changeSearch }/>
-              <Input type="submit" value="Search" onClick={ this.titleSearch }/>
-              <Input type="submit" value="Reset Search" onClick={ this.bookReset }/>
-              { this.searchResult() }
-            </Table.Row>
             <Table.Row>
               <Table.HeaderCell width='one' >Book List</Table.HeaderCell>
               <Table.HeaderCell width='three' ></Table.HeaderCell>

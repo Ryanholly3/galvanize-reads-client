@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Author from './Author';
-import { Table, Input } from 'semantic-ui-react';
+import { Table, Input, Segment } from 'semantic-ui-react';
 import '../App.css';
 
 class AuthorList extends Component {
@@ -32,6 +32,7 @@ class AuthorList extends Component {
         listConstruct.push(this.props.authorSearch[i]);
       }
     }
+
     this.props.authorFilter(listConstruct)
 
     if(listConstruct.length === 0){
@@ -69,6 +70,7 @@ class AuthorList extends Component {
         key={i}
         history={this.props.history}
         id={i}
+        authorId={author.author_id}
         firstName={author.first_name}
         lastName={author.last_name}
         biography={author.biography}
@@ -86,14 +88,14 @@ class AuthorList extends Component {
   render(){
     return (
       <div className="authorList">
-        <Table color='purple' key='purple' striped>
+        <Segment color="red" inverted className="flex">
+          <Input type="text" className="width" placeholder="search for a author..." onChange={ this.changeSearch }/>
+          <Input type="submit" value="Search by Last Name" onClick={ this.authorFilter }/>
+          <Input type="submit" value="Reset Search" onClick={ this.authorReset }/>
+          { this.searchResult() }
+        </Segment>
+        <Table color='red' key='red' striped>
           <Table.Header>
-            <Table.Row>
-              <Input type="text" placeholder="search for a author..." onChange={ this.changeSearch }/>
-              <Input type="submit" value="Search by Last Name" onClick={ this.authorFilter }/>
-              <Input type="submit" value="Reset Search" onClick={ this.authorReset }/>
-              { this.searchResult() }
-            </Table.Row>
             <Table.Row>
               <Table.HeaderCell width='one' >Author List</Table.HeaderCell>
               <Table.HeaderCell width='three' ></Table.HeaderCell>

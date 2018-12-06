@@ -70,21 +70,21 @@ class Books extends Component {
   submitForm = () => {
     if(this.state.title !== '' && this.state.genre !== '' && this.state.cover_url !== '' && this.state.description !== ''){
       //SEND DATA TO APP
-      const newBookRender = {
-        book_id: this.props.booksApp.length,
-        title: this.state.title,
-        genre: this.state.genre,
-        description: this.state.description,
-        cover_url: this.state.cover_url,
-      }
-      const newBook = {
+      let newBook = {
         title: this.state.title,
         genre: this.state.genre,
         description: this.state.description,
         cover_url: this.state.cover_url,
       }
 
-      this.props.addBookRender(newBookRender, newBook)
+      let bookForServer = {
+        title: this.state.title,
+        genre: this.state.genre,
+        description: this.state.description,
+        cover_url: this.state.cover_url,
+      }
+
+      this.props.addBookRender(newBook, bookForServer)
 
     } else {
       this.setState({
@@ -96,15 +96,11 @@ class Books extends Component {
   formStatusMessage(){
     if (this.state.failedSubmit === false){
       return(
-        <div>
-          fill out the form
-        </div>
+        <p value="" />
       )
     } else if(this.state.failedSubmit === true){
       return(
-        <div>
-          Please complete all fields!
-        </div>
+        <p value="Please fill out all fields!" />
       )
     }
   }
@@ -116,7 +112,7 @@ class Books extends Component {
           <div className="books-header">
             <h1>Books</h1>
             <div>
-              <Modal size="tiny" trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
+              <Modal size="tiny" trigger={<Button color="red" size="large" onClick={this.handleOpen}>Add Book</Button>}>
                 <Modal.Header>Add Book Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>

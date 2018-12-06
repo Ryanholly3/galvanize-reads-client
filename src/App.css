@@ -1,5 +1,24 @@
 .App {
   text-align: center;
+  background-image: url('/bookcase.jpg');
+  background-size: cover;
+  background-repeat: repeat-y;
+  width: 100%;
+}
+
+.home{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-card{
+  height: 30vh;
+}
+
+.books, .authors {
+  min-height: 100vh;
 }
 
 .book-cover {
@@ -22,4 +41,15 @@
 
 .centered {
   text-align: center;
+}
+
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.width{
+  width: 65%;
 }

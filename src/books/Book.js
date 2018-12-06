@@ -30,13 +30,12 @@ class Book extends Component {
   deleteBook = () =>{
     var newBookArray = []
     for(let i = 0; i < this.props.bookSearch.length; i++){
-      if(this.props.id !== this.props.bookSearch[i]){
+      if(this.props.id !== i){
         newBookArray.push(this.props.bookSearch[i])
       }
     }
-    var idString = this.props.id.toString()
-
-    this.props.deleteBookRender(newBookArray, idString)
+    var bookIdString = this.props.bookId.toString()
+    this.props.deleteBookRender(newBookArray, bookIdString)
 
   }
 
@@ -56,7 +55,7 @@ class Book extends Component {
           <p><b>Authors:</b></p>
           { this.renderAuthors() }
           <br></br><br></br>
-          <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Book</Button>}>
+          <Modal size="tiny" trigger={<Button size="small" color="red">Edit Book</Button>}>
             <Modal.Header>Edit Book Form</Modal.Header>
             <Modal.Content>
               <Modal.Description>
@@ -87,7 +86,7 @@ class Book extends Component {
               </Modal.Description>
             </Modal.Content>
           </Modal>
-          <Modal trigger={<Button size="small" color="pink">Delete Book</Button>} basic size='small'>
+          <Modal trigger={<Button size="small" color="red">Delete Book</Button>} basic size='small'>
             <Modal.Content className="centered">
               <h1> Are you sure you'd like to delete this book?</h1>
               <h1>{ this.props.title }</h1>

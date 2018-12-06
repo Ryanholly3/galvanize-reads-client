@@ -25,16 +25,16 @@ class Author extends Component {
     }
   }
 
+
   deleteAuthor = () =>{
     var newAuthorArray = []
     for(let i = 0; i < this.props.authorSearch.length; i++){
-      if(this.props.id !== this.props.authorSearch[i]){
+      if(this.props.id !== i){
         newAuthorArray.push(this.props.authorSearch[i])
       }
     }
-    var idString = this.props.id.toString()
-
-    this.props.deleteAuthorRender(newAuthorArray, idString)
+    var authorIdString = this.props.authorId.toString()
+    this.props.deleteAuthorRender(newAuthorArray, authorIdString)
 
   }
 
@@ -53,7 +53,7 @@ class Author extends Component {
           <p><b>Books:</b></p>
           { this.renderBooks() }
           <br></br><br></br>
-          <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Author</Button>}>
+          <Modal size="tiny" trigger={<Button size="small" color="red">Edit Author</Button>}>
             <Modal.Header>Edit Author Form</Modal.Header>
             <Modal.Content>
               <Modal.Description>
@@ -84,7 +84,7 @@ class Author extends Component {
               </Modal.Description>
             </Modal.Content>
           </Modal>
-          <Modal trigger={<Button size="small" color="pink">Delete Author</Button>} basic size='small'>
+          <Modal trigger={<Button size="small" color="red">Delete Author</Button>} basic size='small'>
             <Modal.Content className="centered">
               <h1> Are you sure you'd like to delete this author?</h1>
               <h1>{ `${this.props.firstName} ${this.props.lastName}` }</h1>

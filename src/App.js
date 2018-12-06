@@ -10,10 +10,12 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state= {
-      authorsApp: [],
       booksApp: [],
       bookSearch: [],
+      nextBookId: null,
+      authorsApp: [],
       authorSearch: [],
+      nextAuthorId: null,
     }
   }
 
@@ -22,12 +24,29 @@ class App extends Component {
     const authorResponse = await fetch('http://localhost:3001/authors');
     const bookjson = await bookResponse.json();
     const authorjson = await authorResponse.json();
+
+    const numberBooks = bookjson.books.length;
+    const numberAuthors = authorjson.authors.length;
     this.setState({
       booksApp: bookjson.books,
       bookSearch: bookjson.books,
+      nextBookId: numberBooks,
       authorsApp: authorjson.authors,
       authorSearch: authorjson.authors,
+      nextAuthorId: numberAuthors,
     });
+  }
+
+
+
+  addBookRender = (newBook, bookForServer) =>{
+
+    newBook.book_id = this.state.nextBookId;
+
+    this.setState({
+      bookSearch: this.state.booksApp.concat(newBook),
+    })
+    this.addBook(bookForServer)
   }
 
   addBook = async (book) =>{
@@ -40,25 +59,29 @@ class App extends Component {
         'Accept': 'application/json',
       }
     })
-    const posted = await response.json()
+    let posted = await response.json()
+    posted = posted.book;
+    posted.book_id = posted.id;
+    delete posted.id;
 
     this.setState({
       booksApp: this.state.booksApp.concat(posted),
+      nextBookId: this.state.nextBookId + 1,
     })
   }
 
-  deleteBook = async (bookId) =>{
-    const response = await fetch(`http://localhost:3001/books/${bookId}`, {
-      method: 'DELETE'
-    })
-    const deleted = await response.json()
 
-    var newBook = this.state.booksApp
-    newBook.splice(bookId, 1)
+
+
+  addAuthorRender = (newAuthor, authorForServer) =>{
+    newAuthor.author_id = this.state.nextAuthorId;
+
     this.setState({
-      booksApp: newBook,
-      bookSearch: newBook,
+      authorSearch: this.state.authorsApp.concat(newAuthor),
     })
+
+    console.log('author for Server:', authorForServer)
+    this.addAuthor(authorForServer)
   }
 
   addAuthor = async (author) =>{
@@ -70,56 +93,72 @@ class App extends Component {
         'Accept': 'application/json',
       }
     })
-    const posted = await response.json()
+    let posted = await response.json()
+    posted = posted.author;
+    posted.author_id = posted.id;
+    delete posted.id;
 
     this.setState({
       authorsApp: this.state.authorsApp.concat(posted),
+      nextAuthorId: this.state.nextAuthorId + 1,
     })
   }
 
-  deleteAuthor = async (authorId) =>{
-    console.log('TRIGGERED')
-    const response = await fetch(`http://localhost:3001/authors/${authorId}`, {
-      method: 'DELETE'
-    })
-    const deleted = await response.json()
-    var newAuthor = this.state.authorsApp
-    newAuthor.splice(authorId, 1)
-    this.setState({
-      authorsApp: newAuthor,
-    })
-  }
-
-  addAuthorRender = (newAuthorRender, newAuthor) =>{
-    this.setState({
-      authorSearch: this.state.authorsApp.concat(newAuthorRender),
-    })
-    this.addAuthor(newAuthor)
-  }
-
-  addBookRender = (newBookRender, newBook) =>{
-    this.setState({
-      bookSearch: this.state.booksApp.concat(newBookRender),
-    })
-    this.addBook(newBook)
-  }
 
 
-  deleteAuthorRender = (newAuthorArray, authorIdString) =>{
-    this.setState({
-      authorSearch: newAuthorArray,
-    })
 
-    this.deleteAuthor(authorIdString)
-  }
+  deleteBookRender = (newBookArray, databaseBookIdString, bookAppId) =>{
 
-  deleteBookRender = (newBookArray, bookIdString) =>{
     this.setState({
       bookSearch: newBookArray,
     })
 
-    this.deleteBook(bookIdString)
+    this.deleteBook(databaseBookIdString, bookAppId)
   }
+
+  deleteBook = async (databaseBookIdString) =>{
+    await fetch(`http://localhost:3001/books/${databaseBookIdString}`, {
+      method: 'DELETE'
+    })
+    var bookIdInt = parseInt(databaseBookIdString)
+    var newBook = this.state.booksApp
+
+    var filteredBook = newBook.filter((book) =>{
+      return book.book_id !== bookIdInt
+    })
+    this.setState({
+      booksApp: filteredBook,
+    })
+  }
+
+
+
+
+  deleteAuthorRender = (newAuthorArray, databaseAuthorIdString) =>{
+    this.setState({
+      authorSearch: newAuthorArray,
+    })
+
+    this.deleteAuthor(databaseAuthorIdString)
+  }
+
+  deleteAuthor = async (databaseAuthorIdString) =>{
+    await fetch(`http://localhost:3001/authors/${databaseAuthorIdString}`, {
+      method: 'DELETE'
+    })
+
+    var authorIdInt = parseInt(databaseAuthorIdString)
+    var newAuthor = this.state.authorsApp
+
+    var filteredAuthor = newAuthor.filter((author) =>{
+      return author.author_id !== authorIdInt
+    })
+    this.setState({
+      authorsApp: filteredAuthor,
+    })
+  }
+
+
 
   titleFilter = (item) => {
     this.setState({
@@ -151,7 +190,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Menu color="purple" size="massive" inverted>
+            <Menu color="red" size="massive" inverted>
                 <Menu.Item as={ Link } name='Home' to='/'>
                   <Icon name='student'/>
                   Galvanize Reads

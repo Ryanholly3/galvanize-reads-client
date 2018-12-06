@@ -69,15 +69,7 @@ class Authors extends Component {
 
   submitForm = () => {
     if(this.state.first_name !== '' && this.state.last_name !== '' && this.state.biography !== '' && this.state.portrait_url !== ''){
-      //SEND DATA TO APP
 
-      const newAuthorRender = {
-        author_id: this.props.authorsApp.length,
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        biography: this.state.biography,
-        portrait_url: this.state.portrait_url,
-      }
       const newAuthor = {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
@@ -85,7 +77,14 @@ class Authors extends Component {
         portrait_url: this.state.portrait_url,
       }
 
-      this.props.addAuthorRender(newAuthorRender, newAuthor)
+      const authorForServer = {
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        biography: this.state.biography,
+        portrait_url: this.state.portrait_url,
+      }
+
+      this.props.addAuthorRender(newAuthor, authorForServer)
 
     } else {
       this.setState({
@@ -98,13 +97,12 @@ class Authors extends Component {
     if (this.state.failedSubmit === false){
       return(
         <div>
-          Fill out the form
         </div>
       )
     } else if(this.state.failedSubmit === true){
       return(
         <div>
-          Please complete all fields!
+          Please fill out all fields!
         </div>
       )
     }
@@ -117,7 +115,7 @@ class Authors extends Component {
           <div className="authors-header">
             <h1>Authors</h1>
             <div>
-              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Author</Button>}>
+              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="red" size="large" onClick={this.handleOpen}>Add Author</Button>}>
                 <Modal.Header>Add Author Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>
