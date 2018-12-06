@@ -69,7 +69,7 @@ class AuthorList extends Component {
       return (<Author
         key={i}
         history={this.props.history}
-        authorId={author.author_id}
+        id={i}
         firstName={author.first_name}
         lastName={author.last_name}
         biography={author.biography}

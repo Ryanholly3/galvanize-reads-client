@@ -71,6 +71,13 @@ class Books extends Component {
   submitForm = () => {
     if(this.state.title !== '' && this.state.genre !== '' && this.state.cover_url !== '' && this.state.description !== ''){
       //SEND DATA TO APP
+      const newBookRender = {
+        book_id: this.props.booksApp.length,
+        title: this.state.title,
+        genre: this.state.genre,
+        description: this.state.description,
+        cover_url: this.state.cover_url,
+      }
       const newBook = {
         title: this.state.title,
         genre: this.state.genre,
@@ -78,7 +85,7 @@ class Books extends Component {
         cover_url: this.state.cover_url,
       }
 
-      this.props.addBookRender(newBook)
+      this.props.addBookRender(newBookRender, newBook)
 
     } else {
       this.setState({

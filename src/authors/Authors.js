@@ -71,7 +71,9 @@ class Authors extends Component {
   submitForm = () => {
     if(this.state.first_name !== '' && this.state.last_name !== '' && this.state.biography !== '' && this.state.portrait_url !== ''){
       //SEND DATA TO APP
+
       const newAuthor = {
+        author_id: this.props.authorsApp.length,
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         biography: this.state.biography,

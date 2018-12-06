@@ -17,32 +17,25 @@ class Author extends Component {
   }
 
   renderBooks = () =>{
-    let bookArray =[];
-    for(let i = 0; i < this.props.books.length; i++){
-      bookArray.push(this.props.books[i].title)
+    if(this.props.books){
+      let bookArray =[];
+      for(let i = 0; i < this.props.books.length; i++){
+        bookArray.push(this.props.books[i].title)
+      }
+      return bookArray.map((book, i) => <p><a key={i} onClick={ this.history }>{`${bookArray[i]}`}</a></p>)
     }
-    return bookArray.map((book, i) => <p><a key={i} onClick={ this.history }>{`${bookArray[i]}`}</a></p>)
-  }
-
-
-  deleteAuthor = () =>{
-    var stringId = this.props.authorId.toString()
-    console.log(stringId)
-    this.props.deleteAuthor(stringId)
   }
 
   deleteAuthor = () =>{
-    var authorId = this.props.authorId;
-    console.log('authorId:', authorId)
     var newAuthorArray = []
     for(let i = 0; i < this.props.authorSearch.length; i++){
-      if(this.props.authorId !== this.props.authorSearch[i].author_id){
+      if(this.props.id !== this.props.authorSearch[i]){
         newAuthorArray.push(this.props.authorSearch[i])
       }
     }
-    var authorIdString = this.props.authorId.toString()
+    var idString = this.props.id.toString()
 
-    this.props.deleteAuthorRender(newAuthorArray, authorIdString)
+    this.props.deleteAuthorRender(newAuthorArray, idString)
 
   }
 

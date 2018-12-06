@@ -17,24 +17,28 @@ class Book extends Component {
   }
 
   renderAuthors = () =>{
-    let authorArray =[];
-    for(let i = 0; i < this.props.authors.length; i++){
-      authorArray.push(this.props.authors[i].last_name)
+    if(this.props.books){
+      let authorArray =[];
+      for(let i = 0; i < this.props.authors.length; i++){
+        authorArray.push(this.props.authors[i].last_name)
+      }
+      return authorArray.map((author, i) => <p><a key={i} onClick={ this.history }>{`${authorArray[i]}`}</a></p>)
     }
-    return authorArray.map((author, i) => <p><a key={i} onClick={ this.history }>{`${authorArray[i]}`}</a></p>)
   }
 
+
+
   deleteBook = () =>{
-    var bookId = this.props.bookId;
     var newBookArray = []
     for(let i = 0; i < this.props.bookSearch.length; i++){
-      if(this.props.bookId !== this.props.bookSearch[i].book_id){
+      if(this.props.id !== this.props.bookSearch[i]){
         newBookArray.push(this.props.bookSearch[i])
       }
     }
-    var bookIdString = this.props.bookId.toString()
+    var idString = this.props.id.toString()
 
-    this.props.deleteBookRender(newBookArray, bookIdString)
+    this.props.deleteBookRender(newBookArray, idString)
+
   }
 
   render(){

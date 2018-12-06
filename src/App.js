@@ -44,7 +44,6 @@ class App extends Component {
 
     this.setState({
       booksApp: this.state.booksApp.concat(posted),
-      bookSearch: []
     })
   }
 
@@ -91,26 +90,27 @@ class App extends Component {
     })
   }
 
-  addAuthorRender = (newAuthor) =>{
+  addAuthorRender = (newAuthorRender, newAuthor) =>{
     this.setState({
-      authorSearch: newAuthor,
+      authorSearch: this.state.authorsApp.concat(newAuthorRender),
     })
-    // this.addAuthor(newAuthor)
+    this.addAuthor(newAuthor)
   }
 
-  deleteAuthorRender = (newAuthors, authorIdString) =>{
+  addBookRender = (newBookRender, newBook) =>{
     this.setState({
-      authorSearch: newAuthors,
+      bookSearch: this.state.booksApp.concat(newBookRender),
+    })
+    this.addBook(newBook)
+  }
+
+
+  deleteAuthorRender = (newAuthorArray, authorIdString) =>{
+    this.setState({
+      authorSearch: newAuthorArray,
     })
 
     this.deleteAuthor(authorIdString)
-  }
-
-  addBookRender = (newBook) =>{
-    this.setState({
-      bookSearch: newBook,
-    })
-    // this.addBook(newBook)
   }
 
   deleteBookRender = (newBookArray, bookIdString) =>{

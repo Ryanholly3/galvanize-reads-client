@@ -68,7 +68,7 @@ class BookList extends Component {
       return(
         <Book
           key={i}
-          bookId={book.book_id}
+          id={i}
           title={book.title}
           genre={book.genre}
           description={book.description}
