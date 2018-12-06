@@ -78,8 +78,7 @@ class Books extends Component {
         cover_url: this.state.cover_url,
       }
 
-      this.props.addBook(newBook)
-      this.forceUpdate()
+      this.props.addBookRender(newBook)
 
     } else {
       this.setState({

@@ -91,10 +91,11 @@ class App extends Component {
     })
   }
 
-  addAuthorRender = (newAuthors) =>{
+  addAuthorRender = (newAuthor) =>{
     this.setState({
-      authorSearch: newAuthors,
+      authorSearch: newAuthor,
     })
+    // this.addAuthor(newAuthor)
   }
 
   deleteAuthorRender = (newAuthors, authorIdString) =>{
@@ -105,16 +106,19 @@ class App extends Component {
     this.deleteAuthor(authorIdString)
   }
 
-  addBookRender = (newBooks) =>{
+  addBookRender = (newBook) =>{
     this.setState({
-      bookSearch: newBooks,
+      bookSearch: newBook,
     })
+    // this.addBook(newBook)
   }
 
-  deleteBookRender = (newBooks) =>{
+  deleteBookRender = (newBookArray, bookIdString) =>{
     this.setState({
-      bookSearch: newBooks,
+      bookSearch: newBookArray,
     })
+
+    this.deleteBook(bookIdString)
   }
 
   titleFilter = (item) => {

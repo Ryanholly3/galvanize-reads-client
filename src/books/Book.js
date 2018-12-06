@@ -32,10 +32,9 @@ class Book extends Component {
         newBookArray.push(this.props.bookSearch[i])
       }
     }
-    this.props.deleteBookRender(newBookArray)
-
     var bookIdString = this.props.bookId.toString()
-    // this.props.deleteBook(bookIdString)
+
+    this.props.deleteBookRender(newBookArray, bookIdString)
   }
 
   render(){

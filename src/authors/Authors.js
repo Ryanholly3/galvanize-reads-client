@@ -78,8 +78,7 @@ class Authors extends Component {
         portrait_url: this.state.portrait_url,
       }
 
-      this.props.addAuthor(newAuthor)
-      this.forceUpdate()
+      this.props.addAuthorRender(newAuthor)
 
     } else {
       this.setState({
