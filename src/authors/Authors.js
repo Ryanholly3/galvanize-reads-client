@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AuthorList from './AuthorList';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Container, Button, Modal, Input, TextArea, Form, Icon } from 'semantic-ui-react';
+import { Container, Button, Modal, Input, TextArea, Form } from 'semantic-ui-react';
 import '../App.css';
 
 class Authors extends Component {
@@ -72,15 +71,21 @@ class Authors extends Component {
     if(this.state.first_name !== '' && this.state.last_name !== '' && this.state.biography !== '' && this.state.portrait_url !== ''){
       //SEND DATA TO APP
 
-      const newAuthor = {
+      const newAuthorRender = {
         author_id: this.props.authorsApp.length,
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         biography: this.state.biography,
         portrait_url: this.state.portrait_url,
       }
+      const newAuthor = {
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        biography: this.state.biography,
+        portrait_url: this.state.portrait_url,
+      }
 
-      this.props.addAuthorRender(newAuthor)
+      this.props.addAuthorRender(newAuthorRender, newAuthor)
 
     } else {
       this.setState({

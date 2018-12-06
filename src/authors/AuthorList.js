@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Author from './Author'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Author from './Author';
 import { Table, Input } from 'semantic-ui-react';
 import '../App.css';
 

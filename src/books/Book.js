@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Table, Button, Input, Form, Modal, TextArea, Icon } from 'semantic-ui-react';
 import '../App.css';
 
@@ -17,12 +16,12 @@ class Book extends Component {
   }
 
   renderAuthors = () =>{
-    if(this.props.books){
+    if(this.props.authors){
       let authorArray =[];
       for(let i = 0; i < this.props.authors.length; i++){
         authorArray.push(this.props.authors[i].last_name)
       }
-      return authorArray.map((author, i) => <p><a key={i} onClick={ this.history }>{`${authorArray[i]}`}</a></p>)
+      return authorArray.map((author, i) => <button key={i} onClick={ this.history }>{`${authorArray[i]}`}</button>)
     }
   }
 
@@ -56,7 +55,7 @@ class Book extends Component {
           <p><b>Genre:</b> { this.props.genre }</p>
           <p><b>Authors:</b></p>
           { this.renderAuthors() }
-          <br/>
+          <br></br><br></br>
           <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Book</Button>}>
             <Modal.Header>Edit Book Form</Modal.Header>
             <Modal.Content>

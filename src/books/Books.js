@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BookList from './BookList';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Container, Button, Modal, Input, TextArea, Form, Icon } from 'semantic-ui-react';
+import { Container, Button, Modal, Input, TextArea, Form } from 'semantic-ui-react';
 import '../App.css';
 
 class Books extends Component {
