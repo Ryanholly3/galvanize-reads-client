@@ -40,7 +40,6 @@ class App extends Component {
 
 
   addBookRender = (newBook, bookForServer) =>{
-
     newBook.book_id = this.state.nextBookId;
 
     this.setState({
@@ -50,7 +49,6 @@ class App extends Component {
   }
 
   addBook = async (book) =>{
-    console.log('post triggered')
     const response = await fetch('http://localhost:3001/books', {
       method: 'POST',
       body: JSON.stringify(book),
@@ -79,8 +77,6 @@ class App extends Component {
     this.setState({
       authorSearch: this.state.authorsApp.concat(newAuthor),
     })
-
-    console.log('author for Server:', authorForServer)
     this.addAuthor(authorForServer)
   }
 
@@ -108,7 +104,6 @@ class App extends Component {
 
 
   deleteBookRender = (newBookArray, databaseBookIdString, bookAppId) =>{
-
     this.setState({
       bookSearch: newBookArray,
     })
@@ -167,7 +162,6 @@ class App extends Component {
   }
 
   authorFilter = (item) => {
-    console.log('author filter app item:', item)
     this.setState({
       authorSearch: item
     })

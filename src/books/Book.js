@@ -93,7 +93,7 @@ class Book extends Component {
             </Modal.Content>
             <Modal.Actions>
               <div className="centered">
-                <Button basic color='red'inverted>
+                <Button basic color='red'inverted >
                   <Icon name='remove' /> No, Don't Delete
                 </Button>
                 <Button color='green' inverted onClick={ this.deleteBook }>
