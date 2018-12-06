@@ -64,11 +64,30 @@ class BookList extends Component {
   }
 
   bookItem(){
-    return this.props.bookSearch.map((book, i) => <Book key={i} bookId={book.book_id} title={book.title} genre={book.genre} description={book.description} coverUrl={book.cover_url} authors={book.authors} deleteBook={this.props.deleteBook} history={this.props.history} authorsList={this.props.authors} authorFilter={this.props.authorFilter}/>)
+    return this.props.bookSearch.map((book, i) => {
+      return(
+        <Book
+          key={i}
+          bookId={book.book_id}
+          title={book.title}
+          genre={book.genre}
+          description={book.description}
+          coverUrl={book.cover_url}
+          authors={book.authors}
+          deleteBook={this.props.deleteBook}
+          history={this.props.history}
+          authorSearch={this.props.authorSearch}
+          authorsApp={this.props.authorsApp}
+          booksApp={this.props.booksApp}
+          bookSearch={this.props.bookSearch}
+          authorFilter={this.props.authorFilter}
+          deleteBookRender={this.props.deleteBookRender}
+        />
+      )
+    })
   }
 
   render(){
-    let search = false;
 
     return (
       <div className="bookList">

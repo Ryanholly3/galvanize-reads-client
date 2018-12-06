@@ -65,7 +65,23 @@ class AuthorList extends Component {
   }
 
   authorItem(){
-    return this.props.authorSearch.map((author, i) => <Author key={i} history={this.props.history} authorId={author.author_id} firstName={author.first_name} lastName={author.last_name} biography={author.biography} portraitUrl={author.portrait_url} books={author.books} bookList={this.props.books} deleteAuthor={this.props.deleteAuthor} titleFilter={this.props.titleFilter} />)
+    return this.props.authorSearch.map((author, i) => {
+      return (<Author
+        key={i}
+        history={this.props.history}
+        authorId={author.author_id}
+        firstName={author.first_name}
+        lastName={author.last_name}
+        biography={author.biography}
+        portraitUrl={author.portrait_url}
+        books={author.books}
+        bookSearch={this.props.bookSearch}
+        authorSearch={this.props.authorSearch}
+        deleteAuthor={this.props.deleteAuthor}
+        titleFilter={this.props.titleFilter}
+        deleteAuthorRender={this.props.deleteAuthorRender}
+      />)
+    })
   }
 
   render(){

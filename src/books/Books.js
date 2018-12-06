@@ -92,6 +92,7 @@ class Books extends Component {
     if (this.state.failedSubmit === false){
       return(
         <div>
+          fill out the form
         </div>
       )
     } else if(this.state.failedSubmit === true){
@@ -110,7 +111,7 @@ class Books extends Component {
           <div className="books-header">
             <h1>Books</h1>
             <div>
-              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
+              <Modal size="tiny" trigger={<Button color="pink" size="large" onClick={this.handleOpen}>Add Book</Button>}>
                 <Modal.Header>Add Book Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>
@@ -140,7 +141,18 @@ class Books extends Component {
               </Modal>
             </div>
           </div>
-          <BookList history={this.props.history} books={this.props.books } bookSearch={this.props.bookSearch} bookReset={this.props.bookReset} titleFilter={this.props.titleFilter} deleteBook={this.props.deleteBook} authors={this.props.authors} authorFilter={this.props.authorFilter}/>
+          <BookList
+            history={this.props.history}
+            booksApp={this.props.booksApp }
+            bookSearch={this.props.bookSearch}
+            bookReset={this.props.bookReset}
+            titleFilter={this.props.titleFilter}
+            deleteBook={this.props.deleteBook}
+            authorsApp={this.props.authorsApp}
+            authorSearch={this.props.authorSearch}
+            authorFilter={this.props.authorFilter}
+            deleteBookRender={this.props.deleteBookRender}
+          />
         </div>
       </Container>
     )

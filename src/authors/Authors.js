@@ -92,6 +92,7 @@ class Authors extends Component {
     if (this.state.failedSubmit === false){
       return(
         <div>
+          Fill out the form
         </div>
       )
     } else if(this.state.failedSubmit === true){
@@ -140,7 +141,18 @@ class Authors extends Component {
               </Modal>
             </div>
           </div>
-          <AuthorList history={this.props.history} authors={this.props.authors } books={this.props.books} authorSearch={this.props.authorSearch} authorFilter={this.props.authorFilter} authorReset={this.props.authorReset} deleteAuthor={this.props.deleteAuthor} titleFilter={this.props.titleFilter}/>
+          <AuthorList
+            history={this.props.history}
+            authorsApp={this.props.authorsApp}
+            books={this.props.books}
+            bookSearch={this.props.bookSearch}
+            authorSearch={this.props.authorSearch}
+            authorFilter={this.props.authorFilter}
+            authorReset={this.props.authorReset}
+            deleteAuthor={this.props.deleteAuthor}
+            titleFilter={this.props.titleFilter}
+            deleteAuthorRender={this.props.deleteAuthorRender}
+          />
         </div>
       </Container>
     )

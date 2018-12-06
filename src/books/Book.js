@@ -7,9 +7,9 @@ class Book extends Component {
 
   history = (e) =>{
     var listConstruct = [];
-    for(let i = 0; i < this.props.authorsList.length; i++){
-      if(this.props.authorsList[i].last_name.indexOf(e.target.innerText) !== -1){
-        listConstruct.push(this.props.authorsList[i]);
+    for(let i = 0; i < this.props.authorSearch.length; i++){
+      if(this.props.authorSearch[i].last_name.indexOf(e.target.innerText) !== -1){
+        listConstruct.push(this.props.authorSearch[i]);
       }
     }
     this.props.authorFilter(listConstruct)
@@ -21,19 +21,28 @@ class Book extends Component {
     for(let i = 0; i < this.props.authors.length; i++){
       authorArray.push(this.props.authors[i].last_name)
     }
-    return authorArray.map((author, i) => <a key={i} onClick={ this.history }>{`${authorArray[i]}`}</a>)
+    return authorArray.map((author, i) => <p><a key={i} onClick={ this.history }>{`${authorArray[i]}`}</a></p>)
   }
 
   deleteBook = () =>{
-    var stringId = this.props.bookId.toString()
-    this.props.deleteBook(stringId)
+    var bookId = this.props.bookId;
+    var newBookArray = []
+    for(let i = 0; i < this.props.bookSearch.length; i++){
+      if(this.props.bookId !== this.props.bookSearch[i].book_id){
+        newBookArray.push(this.props.bookSearch[i])
+      }
+    }
+    this.props.deleteBookRender(newBookArray)
+
+    var bookIdString = this.props.bookId.toString()
+    // this.props.deleteBook(bookIdString)
   }
 
   render(){
     var authorList = '';
-    for(let i = 0; i < this.props.authors.length; i++){
-      authorList += this.props.authors[i].first_name + ' ';
-      authorList += this.props.authors[i].last_name + ', ';
+    for(let i = 0; i < this.props.authorSearch.length; i++){
+      authorList += this.props.authorSearch[i].first_name + ' ';
+      authorList += this.props.authorSearch[i].last_name + ', ';
     }
 
     return (
@@ -42,7 +51,8 @@ class Book extends Component {
         <Table.Cell>
           <p><b>Title:</b> { this.props.title }</p>
           <p><b>Genre:</b> { this.props.genre }</p>
-          <p><b>Authors:</b> { this.renderAuthors() }</p>
+          <p><b>Authors:</b></p>
+          { this.renderAuthors() }
           <br/>
           <Modal size="tiny" trigger={<Button size="small" color="pink">Edit Book</Button>}>
             <Modal.Header>Edit Book Form</Modal.Header>
