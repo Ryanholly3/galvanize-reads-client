@@ -113,9 +113,9 @@ class Authors extends Component {
       <Container>
         <div className="authors">
           <div className="authors-header">
-            <h1>Authors</h1>
+            <h1 className="white">Authors</h1>
             <div>
-              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button color="red" size="large" onClick={this.handleOpen}>Add Author</Button>}>
+              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button size="large" className="add-author-button" onClick={this.handleOpen}>Add Author</Button>}>
                 <Modal.Header>Add Author Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>

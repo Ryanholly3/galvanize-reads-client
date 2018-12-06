@@ -91,13 +91,13 @@ class BookList extends Component {
 
     return (
       <div className="bookList">
-        <Segment color="red" inverted className="flex">
-          <Input type="text" className="width" placeholder="search for a book..." onChange={ this.changeSearch }/>
+        <Segment className="book-search-bar">
+          <Input type="text" className="search-width" placeholder="search for a book..." onChange={ this.changeSearch }/>
           <Input type="submit" value="Search by Title" onClick={ this.titleSearch }/>
           <Input type="submit" value="Reset Search" onClick={ this.bookReset }/>
           { this.searchResult() }
         </Segment>
-        <Table color='red' key='red' striped>
+        <Table className="book-table">
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell width='one' >Book List</Table.HeaderCell>

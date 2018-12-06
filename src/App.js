@@ -184,7 +184,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Menu color="red" size="massive" inverted>
+            <Menu inverted className="menu" size="massive">
                 <Menu.Item as={ Link } name='Home' to='/'>
                   <Icon name='student'/>
                   Galvanize Reads

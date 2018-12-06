@@ -88,13 +88,13 @@ class AuthorList extends Component {
   render(){
     return (
       <div className="authorList">
-        <Segment color="red" inverted className="flex">
-          <Input type="text" className="width" placeholder="search for a author..." onChange={ this.changeSearch }/>
+        <Segment className="author-search-bar">
+          <Input type="text" className="search-width" placeholder="search for a author..." onChange={ this.changeSearch }/>
           <Input type="submit" value="Search by Last Name" onClick={ this.authorFilter }/>
           <Input type="submit" value="Reset Search" onClick={ this.authorReset }/>
           { this.searchResult() }
         </Segment>
-        <Table color='red' key='red' striped>
+        <Table color='grey' striped className="author-table">
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell width='one' >Author List</Table.HeaderCell>

@@ -13,7 +13,7 @@ class Home extends Component {
     return (
       <Container>
         <div className="home">
-        <Card color="red" className="home-card">
+        <Card className="home-card">
           <Card.Content header='Galvanize Reads' />
           <Card.Content description={description} />
         </Card>

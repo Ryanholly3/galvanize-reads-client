@@ -1,11 +1,31 @@
+
+
+/************ APP STYLING **************/
 .App {
   text-align: center;
   background-image: url('/bookcase.jpg');
-  background-size: cover;
-  background-repeat: repeat-y;
-  width: 100%;
+  background-size: 100% auto;
 }
 
+.centered {
+  text-align: center;
+}
+
+.menu{
+  color: white !important;
+  background-color: #245C7A !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
+}
+
+.search-width{
+  width: 65%;
+}
+
+h1.white {
+  color: white;
+}
+
+/************* HOME PAGE STYLING **********/
 .home{
   min-height: 100vh;
   display: flex;
@@ -15,9 +35,47 @@
 
 .home-card{
   height: 30vh;
+  background-color: #ECFCFF !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4);
 }
 
-.books, .authors {
+/************* AUTHOR PAGE STYLING *************/
+
+.authors {
+  min-height: 100vh;
+}
+
+.author-portrait {
+  /* height: 30%; */
+}
+
+.authors-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.author-search-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #245C7A !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
+}
+
+
+.add-author-button{
+  color: white !important;
+  background-color: #245C7A !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
+}
+
+.author-table{
+  background-color: #F9FAFB !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
+}
+
+/************** BOOK PAGE STYLING *************/
+.books {
   min-height: 100vh;
 }
 
@@ -30,26 +88,21 @@
   justify-content: space-between;
 }
 
-.author-portrait {
-  /* height: 30%; */
-}
-
-.authors-header{
-  display: flex;
-  justify-content: space-between;
-}
-
-.centered {
-  text-align: center;
-}
-
-
-.flex{
+.book-search-bar{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: #245C7A !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
 }
 
-.width{
-  width: 65%;
+.add-book-button{
+  color: white !important;
+  background-color: #245C7A !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
+}
+
+.book-table{
+  background-color: #F9FAFB !important;
+  box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
 }

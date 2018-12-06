@@ -107,12 +107,12 @@ class Books extends Component {
 
   render(){
     return (
-      <Container>
-        <div className="books">
+      <div>
+        <Container className="books">
           <div className="books-header">
-            <h1>Books</h1>
+            <h1 className="white">Books</h1>
             <div>
-              <Modal size="tiny" trigger={<Button color="red" size="large" onClick={this.handleOpen}>Add Book</Button>}>
+              <Modal size="tiny" trigger={<Button className="add-book-button" size="large" onClick={this.handleOpen}>Add Book</Button>}>
                 <Modal.Header>Add Book Form</Modal.Header>
                 <Modal.Content>
                   <Modal.Description>
@@ -154,8 +154,8 @@ class Books extends Component {
             authorFilter={this.props.authorFilter}
             deleteBookRender={this.props.deleteBookRender}
           />
-        </div>
-      </Container>
+        </Container>
+      </div>
     )
   }
 }
