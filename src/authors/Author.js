@@ -53,7 +53,7 @@ class Author extends Component {
           <p><b>Books:</b></p>
           { this.renderBooks() }
           <br></br><br></br>
-          <Modal size="tiny" trigger={<Button size="small" color="grey">Edit Author</Button>}>
+          <Modal size="tiny" trigger={<Button size="small">Edit Author</Button>}>
             <Modal.Header>Edit Author Form</Modal.Header>
             <Modal.Content>
               <Modal.Description>
@@ -84,7 +84,7 @@ class Author extends Component {
               </Modal.Description>
             </Modal.Content>
           </Modal>
-          <Modal trigger={<Button size="small" color="grey">Delete Author</Button>} basic size='small'>
+          <Modal trigger={<Button size="small" >Delete Author</Button>} basic size='small'>
             <Modal.Content className="centered">
               <h1> Are you sure you'd like to delete this author?</h1>
               <h1>{ `${this.props.firstName} ${this.props.lastName}` }</h1>

@@ -34,9 +34,29 @@ h1.white {
 }
 
 .home-card{
-  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 40vw;
   background-color: #ECFCFF !important;
   box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4);
+  border-radius: 5%;
+}
+
+.home-caption{
+  width: 90%;
+}
+
+.home-title-1{
+  font-size: 100px;
+  margin: 0;
+}
+
+.home-title-2{
+  font-size: 100px;
+  margin: 0 0 10px 0;
 }
 
 /************* AUTHOR PAGE STYLING *************/
@@ -67,6 +87,10 @@ h1.white {
   color: white !important;
   background-color: #245C7A !important;
   box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
+}
+
+.delete-author-button{
+  background-color: #F9FAFB !important;
 }
 
 .author-table{
