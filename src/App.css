@@ -22,7 +22,10 @@
 }
 
 h1.white {
+  margin: 0;
   color: white;
+  font-size: 60px;
+  text-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4);
 }
 
 /************* HOME PAGE STYLING **********/
@@ -71,7 +74,9 @@ h1.white {
 
 .authors-header{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .author-search-bar{
@@ -84,8 +89,9 @@ h1.white {
 
 
 .add-author-button{
+  height: 50px !important;
   color: white !important;
-  background-color: #245C7A !important;
+  background-color: #5E9CBD !important;
   box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
 }
 
@@ -109,7 +115,9 @@ h1.white {
 
 .books-header{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .book-search-bar{
@@ -121,8 +129,9 @@ h1.white {
 }
 
 .add-book-button{
+  height: 50px !important;
   color: white !important;
-  background-color: #245C7A !important;
+  background-color: #5E9CBD !important;
   box-shadow: 4px 4px 4px rgba( 0, 0, 0, 0.4) !important;
 }
 

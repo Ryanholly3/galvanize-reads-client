@@ -111,7 +111,6 @@ class Books extends Component {
         <Container className="books">
           <div className="books-header">
             <h1 className="white">Books</h1>
-            <div>
               <Modal size="tiny" trigger={<Button className="add-book-button" size="large" onClick={this.handleOpen}>Add Book</Button>}>
                 <Modal.Header>Add Book Form</Modal.Header>
                 <Modal.Content>
@@ -140,7 +139,6 @@ class Books extends Component {
                   </Modal.Description>
                 </Modal.Content>
               </Modal>
-            </div>
           </div>
           <BookList
             history={this.props.history}

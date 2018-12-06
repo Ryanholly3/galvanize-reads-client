@@ -114,36 +114,34 @@ class Authors extends Component {
         <div className="authors">
           <div className="authors-header">
             <h1 className="white">Authors</h1>
-            <div>
-              <Modal size="tiny" open={this.state.modalOpen} trigger={<Button size="large" className="add-author-button" onClick={this.handleOpen}>Add Author</Button>}>
-                <Modal.Header>Add Author Form</Modal.Header>
-                <Modal.Content>
-                  <Modal.Description>
-                    <Form >
-                      <Form.Field>
-                        <label>First Name:</label>
-                        <Input onChange={ this.captureFirstName } />
-                      </Form.Field>
-                      <Form.Field>
-                        <label>Last Name:</label>
-                        <Input onChange={ this.captureLastName } />
-                      </Form.Field>
-                      <Form.Field>
-                        <label>Portrait Url:</label>
-                        <Input onChange={ this.captureUrl }/>
-                      </Form.Field>
-                      <Form.Field>
-                        <label>Biography:</label>
-                        <TextArea autoHeight onChange={ this.captureBiography } />
-                      </Form.Field>
-                      { this.formStatusMessage() }
-                      <Button color="red" type="button" onClick={ this.handleClose } >EXIT</Button>
-                      <Button color="green" type="button" onClick={ this.submitForm } >Submit New Author</Button>
-                    </Form>
-                  </Modal.Description>
-                </Modal.Content>
-              </Modal>
-            </div>
+            <Modal size="tiny" open={this.state.modalOpen} trigger={<Button size="large" className="add-author-button" onClick={this.handleOpen}>Add Author</Button>}>
+              <Modal.Header>Add Author Form</Modal.Header>
+              <Modal.Content>
+                <Modal.Description>
+                  <Form >
+                    <Form.Field>
+                      <label>First Name:</label>
+                      <Input onChange={ this.captureFirstName } />
+                    </Form.Field>
+                    <Form.Field>
+                      <label>Last Name:</label>
+                      <Input onChange={ this.captureLastName } />
+                    </Form.Field>
+                    <Form.Field>
+                      <label>Portrait Url:</label>
+                      <Input onChange={ this.captureUrl }/>
+                    </Form.Field>
+                    <Form.Field>
+                      <label>Biography:</label>
+                      <TextArea autoHeight onChange={ this.captureBiography } />
+                    </Form.Field>
+                    { this.formStatusMessage() }
+                    <Button color="red" type="button" onClick={ this.handleClose } >EXIT</Button>
+                    <Button color="green" type="button" onClick={ this.submitForm } >Submit New Author</Button>
+                  </Form>
+                </Modal.Description>
+              </Modal.Content>
+            </Modal>
           </div>
           <AuthorList
             history={this.props.history}
