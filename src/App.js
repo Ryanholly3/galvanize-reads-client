@@ -20,8 +20,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const bookResponse = await fetch('http://localhost:3001/books');
-    const authorResponse = await fetch('http://localhost:3001/authors');
+    const bookResponse = await fetch('https://shrouded-retreat-53312.herokuapp.com/books');
+    const authorResponse = await fetch('https://shrouded-retreat-53312.herokuapp.com/authors');
     const bookjson = await bookResponse.json();
     const authorjson = await authorResponse.json();
 
@@ -81,7 +81,7 @@ class App extends Component {
   }
 
   addAuthor = async (author) =>{
-    const response = await fetch('http://localhost:3001/authors', {
+    const response = await fetch('https://shrouded-retreat-53312.herokuapp.com/authors', {
       method: 'POST',
       body: JSON.stringify(author),
       headers: {
@@ -112,7 +112,7 @@ class App extends Component {
   }
 
   deleteBook = async (databaseBookIdString) =>{
-    await fetch(`http://localhost:3001/books/${databaseBookIdString}`, {
+    await fetch(`https://shrouded-retreat-53312.herokuapp.com/books/${databaseBookIdString}`, {
       method: 'DELETE'
     })
     var bookIdInt = parseInt(databaseBookIdString)
@@ -138,7 +138,7 @@ class App extends Component {
   }
 
   deleteAuthor = async (databaseAuthorIdString) =>{
-    await fetch(`http://localhost:3001/authors/${databaseAuthorIdString}`, {
+    await fetch(`https://shrouded-retreat-53312.herokuapp.com/authors/${databaseAuthorIdString}`, {
       method: 'DELETE'
     })
 
