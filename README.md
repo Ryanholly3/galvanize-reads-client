@@ -8,6 +8,19 @@ View repository for back-end [HERE](https://github.com/Ryanholly3/galvanize-read
 Library app that allows users to view authors and books that are stored in a relational database. Users can search, add, delete, and modify authors and books stored on the app. Users can track relationship of books to their author(s).
 
 
+## Run the Project
+
+On command line:
+
+```sh
+git clone https://github.com/Ryanholly3/galvanize-reads-client.git
+cd galvanize-reads-client
+npm install
+npm start
+```
+
+Then visit http://localhost:3000/
+
 ## ScreenShot
 ![](/public/ScreenShot.jpg)
 
