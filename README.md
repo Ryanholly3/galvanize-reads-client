@@ -13,7 +13,7 @@ Library app that allows users to view authors and books that are stored in a rel
 On command line:
 
 ```sh
-git clone https://github.com/Ryanholly3/galvanize-reads-client.git
+git clone git@github.com:Ryanholly3/galvanize-reads-client.git
 cd galvanize-reads-client
 npm install
 npm start
